@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>GoT Hangman
+  </title>
+</head>
+
+<body>
+
+  <div id="game">
+    <p>Guess which GoT character is going to get hanged, or you will! Hit space to begin playing!</p>
+  </div>
+
+  <script type="text/javascript">
+
+    // My array that lists out all of the options .
+    var GoTNames = ["Roose", "Tywin", "Davos", "Beric", "Jaqen", "Hodor", "Euron", "Jorah", "Theon", "Petyr", "Varys", "Sansa", "Bronn", "Jaime", "Stark"];
+    
+    var computerChoice
+    var userGuess
+
+    // To display the text for the user
+    var guessesRemainingText = document.getElementById("guesses-remaining")
+    var letterGuessedText = document.getElementById("letter-guessed")
+    var allLettersGuessedText = document.getElementById("all-letters-guessed")   
+
+    
+    
+    var computerChoice = GoTNames[Math.floor(Math.random() * GoTNames.length)];
+
+    // This function is run whenever the user presses a key.
+    document.onkeyup = function(event) {
+
+        
+
+        // Determines which key was pressed.
+        var userGuess = event.key;
+    }
+
+    g
+
+</body>
+</html>
