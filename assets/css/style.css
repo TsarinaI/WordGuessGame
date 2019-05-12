@@ -1,0 +1,19 @@
+h1,
+h2,
+p {
+    font-family: 'Crimson Text', serif;
+}
+
+.backgroundImage {
+    float: center;
+}
+
+body {
+    background-color: darkred;
+}
+
+#game-display{
+    font-size: 50px;
+    font-family: 'Crimson Text', serif;
+    padding: 10px 20px 60px 20px;
+}

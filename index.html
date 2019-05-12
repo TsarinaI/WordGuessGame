@@ -2,44 +2,132 @@
 <html lang="en-us">
 
 <head>
-  <meta charset="UTF-8">
-  <title>GoT Hangman
-  </title>
+    <meta charset="UTF-8">
+    <title>GoT Hangman
+    </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text" rel="stylesheet">
+
+    <!-- Bootstrap File -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+
+    <!-- CSS file -->
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+
 </head>
 
 <body>
 
-  <div id="game">
-    <p>Guess which GoT character is going to get hanged, or you will! Hit space to begin playing!</p>
-  </div>
+    <header id="game" class="jumbotron">
+        <h1 class="text-center">Game of Thrones Hangman</h1>
+        <p class="text-center">Guess which GoT character is going to get hanged, or you will! Type letters to figure out which character will lose their head. But remember: you only get a certain amount of chances before you pay the iron price so guess carefully. Valar morghulis.
+            </p>
+    </header>
 
-  <script type="text/javascript">
+    <div id="game" class="text-center">
+        <div>
+            <img src="assets/images/ironthrone.png" class="backgroundImage">
+        </div>
+        <p>
+            <h2 id="game-display" class="text-center"></h2>
+        </p>
+        <p id="guesses-remaining">Guesses Left: </p>
+    </div>
 
-    // My array that lists out all of the options .
-    var GoTNames = ["Roose", "Tywin", "Davos", "Beric", "Jaqen", "Hodor", "Euron", "Jorah", "Theon", "Petyr", "Varys", "Sansa", "Bronn", "Jaime", "Stark"];
-    
-    var computerChoice
-    var userGuess
+    <script type="text/javascript">
 
-    // To display the text for the user
-    var guessesRemainingText = document.getElementById("guesses-remaining")
-    var letterGuessedText = document.getElementById("letter-guessed")
-    var allLettersGuessedText = document.getElementById("all-letters-guessed")   
+        // My array that lists out all of the options .
+        var GoTNames = ["Daenerys", "Baratheon", "Arya", "Bran", "Tyrion", "Roose", "Tywin", "Davos", "Beric", "Jaqen", "Hodor", "Euron", "Jorah", "Theon", "Petyr", "Varys", "Sansa", "Bronn", "Jaime", "Stark"];
+        var blanks = []
+        var usedLetters = []
 
-    
-    
-    var computerChoice = GoTNames[Math.floor(Math.random() * GoTNames.length)];
+        var computerChoice
+        var userGuess
 
-    // This function is run whenever the user presses a key.
-    document.onkeyup = function(event) {
+        var guessesLeft = 0
 
+        // To display the text for the user
+        var guessesRemainingText = document.getElementById("guesses-remaining")
+        var letterGuessedText = document.getElementById("letter-guessed")
+        var allLettersGuessedText = document.getElementById("all-letters-guessed")
+
+
+
+        var letterArray = []
         
 
-        // Determines which key was pressed.
-        var userGuess = event.key;
-    }
+        // The alert that appears if you win/lose
+        function win() {
+            alert("You guessed " + computerChoice + " and you're right! You've lived to see another day! Valar dohaeris.")
+            start()
+        }
 
-    g
+        function lose() {
+            alert("You guessed wrong! A debt is owed to the Many-Faced God.")
+            start()
+        }
 
+        function start() {
+            computerChoice = GoTNames[Math.floor(Math.random() * GoTNames.length)].toLowerCase();
+            console.log(computerChoice)
+            letterArray = computerChoice.split("");
+            // blanks = ["__"]
+
+            guessesLeft = 8;
+
+            for (let i = 0; i < letterArray.length; i++) {
+                blanks.push(" __");
+
+            }
+        }
+
+        // This function is run whenever the user presses a key.
+        start()
+
+        document.onkeyup = function (event) {
+            // Determines which key was pressed.
+            userGuess = event.key.toLowerCase();
+            console.log(userGuess);
+
+            if (usedLetters.includes(userGuess)) {
+
+                alert("You already guessed this letter!");
+                return;
+            }
+            usedLetters.push(userGuess);
+
+            if (letterArray.includes(userGuess)) {
+                for (let i = 0; i < letterArray.length; i++) {
+                    if (userGuess === letterArray[i]) {
+                        blanks[i] = userGuess;
+
+                    }
+
+                }
+                if (!blanks.includes(" __")) {
+                    win();
+                    
+                }
+            }
+            else {
+                guessesLeft--;
+                if (guessesLeft === 0) {
+                    lose();
+                    
+                    
+                }
+            }
+            console.log(blanks)
+            $("#game-display").text(blanks)
+            $("#guesses-remaining").text(guessesLeft)
+        }
+
+
+    </script>
 </body>
+
 </html>
