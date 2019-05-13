@@ -36,97 +36,11 @@
             <h2 id="game-display" class="text-center"></h2>
         </p>
         <p id="guesses-remaining">Guesses Left: </p>
+        <div class="wins">Wins: 0</div>
+        <div class="losses">Losses:0</div>
     </div>
 
-    <script type="text/javascript">
-
-        // My array that lists out all of the options .
-        var GoTNames = ["Daenerys", "Baratheon", "Arya", "Bran", "Tyrion", "Roose", "Tywin", "Davos", "Beric", "Jaqen", "Hodor", "Euron", "Jorah", "Theon", "Petyr", "Varys", "Sansa", "Bronn", "Jaime", "Stark"];
-        var blanks = []
-        var usedLetters = []
-
-        var computerChoice
-        var userGuess
-
-        var guessesLeft = 0
-
-        // To display the text for the user
-        var guessesRemainingText = document.getElementById("guesses-remaining")
-        var letterGuessedText = document.getElementById("letter-guessed")
-        var allLettersGuessedText = document.getElementById("all-letters-guessed")
-
-
-
-        var letterArray = []
-        
-
-        // The alert that appears if you win/lose
-        function win() {
-            alert("You guessed " + computerChoice + " and you're right! You've lived to see another day! Valar dohaeris.")
-            start()
-        }
-
-        function lose() {
-            alert("You guessed wrong! A debt is owed to the Many-Faced God.")
-            start()
-        }
-
-        function start() {
-            computerChoice = GoTNames[Math.floor(Math.random() * GoTNames.length)].toLowerCase();
-            console.log(computerChoice)
-            letterArray = computerChoice.split("");
-            // blanks = ["__"]
-
-            guessesLeft = 8;
-
-            for (let i = 0; i < letterArray.length; i++) {
-                blanks.push(" __");
-
-            }
-        }
-
-        // This function is run whenever the user presses a key.
-        start()
-
-        document.onkeyup = function (event) {
-            // Determines which key was pressed.
-            userGuess = event.key.toLowerCase();
-            console.log(userGuess);
-
-            if (usedLetters.includes(userGuess)) {
-
-                alert("You already guessed this letter!");
-                return;
-            }
-            usedLetters.push(userGuess);
-
-            if (letterArray.includes(userGuess)) {
-                for (let i = 0; i < letterArray.length; i++) {
-                    if (userGuess === letterArray[i]) {
-                        blanks[i] = userGuess;
-
-                    }
-
-                }
-                if (!blanks.includes(" __")) {
-                    win();
-                    
-                }
-            }
-            else {
-                guessesLeft--;
-                if (guessesLeft === 0) {
-                    lose();
-                    
-                    
-                }
-            }
-            console.log(blanks)
-            $("#game-display").text(blanks)
-            $("#guesses-remaining").text(guessesLeft)
-        }
-
-
+    <script src="assets/javascript/game.js"></script>
     </script>
 </body>
 
