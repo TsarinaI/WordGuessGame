@@ -8,6 +8,8 @@
         var computerChoice
         var userGuess
 
+        var wins = 0
+        var losses = 0
         var guessesLeft = 0
 
         // To display the text for the user
@@ -30,7 +32,7 @@
         }
 
         function lose() {
-            alert("You guessed " + computerChoice + " and you were wrong! A debt is owed to the Many-Faced God.")
+            alert("You guessed and you were wrong! A debt is owed to the Many-Faced God.")
             losses++
             document.querySelector(".losses").innerHTML = "Losses: "+losses; //displays losses
             
@@ -43,15 +45,17 @@
             letterArray = computerChoice.split("");
             // blanks = ["__"]
 
-            guessesLeft = 8;
-            blanks=[]//this resets the array
+            guessesLeft = 9;
+            blanks=[] //this resets the array
             for (let i = 0; i < letterArray.length; i++) {
                 blanks.push(" __");
 
             }
             document.querySelector("#guesses-remaining").innerHTML = "Guesses Left: "+guessesLeft;
             document.querySelector("#game-display").innerHTML = blanks; // display blanks
+            console.log(guessesLeft)
         }
+        console.log(blanks)
 
         // This function is run whenever the user presses a key.
         start()
@@ -82,11 +86,14 @@
             }
             else {
                 guessesLeft--;
+                console.log("The one on line 89", guessesLeft);
+                document.querySelector("#guesses-remaining").innerHTML = "Guesses Left: "+guessesLeft;
                 if (guessesLeft === 0) {
                     lose();
                 }
             }
-            console.log(blanks)
+            console.log("Why did I do this again?", blanks)
+            document.querySelector("#game-display").innerHTML = blanks; // display blanks
             
         }
 
