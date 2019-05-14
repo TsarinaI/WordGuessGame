@@ -52,7 +52,7 @@
 
             }
             document.querySelector("#guesses-remaining").innerHTML = "Guesses Left: "+guessesLeft;
-            document.querySelector("#game-display").innerHTML = blanks; // display blanks
+            document.querySelector("#game-display").innerHTML = blanks.join(" "); // display blanks
             console.log(guessesLeft)
         }
         console.log(blanks)
@@ -93,7 +93,7 @@
                 }
             }
             console.log("Why did I do this again?", blanks)
-            document.querySelector("#game-display").innerHTML = blanks; // display blanks
+            document.querySelector("#game-display").innerHTML = blanks.join(" "); // display blanks
             
         }
 
